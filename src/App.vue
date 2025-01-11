@@ -3,7 +3,6 @@ import { RouterView } from 'vue-router';
 
 import FooterComponent from './components/FooterComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
-import CartComponet from './components/CartComponent.vue';
 </script>
 
 <template>
@@ -11,7 +10,6 @@ import CartComponet from './components/CartComponent.vue';
     <!-- Навбар -->
     <HeaderComponent />
 
-    <CartComponet/>
     <!-- Головний контент -->
     <main class="flex-grow mx-4">
       <RouterView />
