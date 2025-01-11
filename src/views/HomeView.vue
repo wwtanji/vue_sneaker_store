@@ -1,19 +1,18 @@
 <template>
   <div>
     <SliderComponent />
-    <LittleCartComponent/>
+    <SliderTwoComponent/>
   </div>
 </template>
 
 <script>
 // Імпортуємо SliderComponent
 import SliderComponent from '@/components/SliderComponent.vue';
-import LittleCartComponent from '@/components/SliderTwoCompinent.vue';
-
+import SliderTwoComponent from '@/components/SliderTwoComponent.vue';
 export default {
   components: {
     SliderComponent,  // реєструємо компонент для використання
-    LittleCartComponent,
+    SliderTwoComponent,
   },
 };
 </script>
