@@ -35,22 +35,26 @@
       <div
         v-for="(product, index) in products"
         :key="index"
-        class="border rounded-lg p-4 text-center"
+        class="border rounded-lg p-4 text-center flex flex-col"
       >
         <img :src="product.image" :alt="product.name" class="w-full h-auto rounded-lg mb-4" />
         <h3 class="text-lg font-semibold mb-2">{{ product.name }}</h3>
-        <p class="text-gray-600">{{ product.price }} Kč</p>
-        <!-- Кнопка "Buy" -->
-        <button
-          @click="buyProduct(product)"
-          class="mt-4 py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          Buy
-        </button>
+
+        <!-- Кнопка "Buy" зліва та ціна справа -->
+        <div class="flex justify-between items-center mt-4">
+          <button
+            @click="buyProduct(product)"
+            class="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Buy
+          </button>
+          <p class="text-gray-600">{{ product.price }} Kč</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -135,7 +139,6 @@ export default {
     },
   },
   created() {
-    // Відновлюємо сортування при завантаженні сторінки
     if (this.sortMode === 'Najlacnejšie') {
       this.sortByPriceAsc();
     } else if (this.sortMode === 'Najdrahšie') {
@@ -143,7 +146,6 @@ export default {
     } else if (this.sortMode === 'Abecedne') {
       this.sortByAlphabet();
     } else {
-      // Якщо сортування не вибрано або очищено, залишаємо початковий список
       this.products = [...this.originalProducts];
     }
   },
