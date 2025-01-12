@@ -37,7 +37,13 @@
         :key="index"
         class="border rounded-lg p-4 text-center flex flex-col"
       >
-        <img :src="product.image" :alt="product.name" class="w-full h-auto rounded-lg mb-4" />
+        <!-- Картинка з обробником події на клік для переходу до сторінки товару -->
+        <img
+          :src="product.image"
+          :alt="product.name"
+          class="w-full h-auto rounded-lg mb-4 cursor-pointer"
+          @click="goToProductPage(index)"
+        />
         <h3 class="text-lg font-semibold mb-2">{{ product.name }}</h3>
 
         <!-- Кнопка "Buy" зліва та ціна справа -->
@@ -100,6 +106,11 @@ export default {
     };
   },
   methods: {
+    // Переходить на сторінку продукту
+    goToProductPage(index) {
+      // Перенаправляє користувача на сторінку продукту
+      this.$router.push(`/product/${index + 1}`);
+    },
     sortByPriceAsc() {
       this.products = [...this.originalProducts].sort((a, b) => a.price - b.price);
       this.sortMode = "Najlacnejšie";

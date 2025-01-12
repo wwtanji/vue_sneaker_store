@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue' // Додав імпорт для HomeView
 import BasketComponent from '@/components/BasketComponent.vue'
+import CartComponent from '@/components/CartComponent.vue'
+import ProductMoreComponent from '@/components/ProductMoreComponent.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,12 +20,17 @@ const router = createRouter({
     {
       path: '/sneakers',
       name: 'sneakers',
-      component: () => import('@/components/CartComponent.vue') // Динамічний імпорт
+      component: CartComponent // Ви вже імпортували цей компонент без динамічного імпорту
     },
     {
       path: '/basket',
-      name: 'basket', // Додано двокрапку
+      name: 'basket',
       component: BasketComponent
+    },
+    {
+      path: '/product/1', // Динамічний маршрут для продукту
+      name: 'product',
+      component: ProductMoreComponent
     }
   ]
 })
