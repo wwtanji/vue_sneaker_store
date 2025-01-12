@@ -134,6 +134,20 @@ export default {
       setTimeout(() => {
         this.showBasketMessage = false;
       }, 1000);
+    },
+    beforeEnter(el) {
+      el.style.opacity = 0;
+    },
+    enter(el, done) {
+      el.offsetHeight; // trigger reflow
+      el.style.transition = 'opacity 0.5s';
+      el.style.opacity = 1;
+      done();
+    },
+    leave(el, done) {
+      el.style.transition = 'opacity 0.5s';
+      el.style.opacity = 0;
+      done();
     }
   }
 };

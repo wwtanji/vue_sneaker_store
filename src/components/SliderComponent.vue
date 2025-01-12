@@ -19,7 +19,7 @@
       </div>
 
       <!-- Slider indicators -->
-      <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+      <div class="absolute z-30 flex -translate-x-1/2 bottom-8 left-1/2 space-x-3 rtl:space-x-reverse"> <!-- Adjusted 'bottom' value -->
         <button v-for="(slide, index) in slides" :key="'indicator-' + index"
           @click="goToSlide(index)"
           :class="['w-3 h-3 rounded-full', { 'bg-gray-800': currentIndex === index, 'bg-gray-300': currentIndex !== index }]"
@@ -116,13 +116,13 @@ img {
 
 /* Унікальні стилі для кожного зображення */
 #slide-image-0 {
-  max-width: 20%;
-  max-height: 20%;
+  max-width: 15%;
+  max-height: 15%;
 }
 
 #slide-image-1 {
-  max-width: 30%;
-  max-height: 30%;
+  max-width: 15%;
+  max-height: 15%;
 }
 
 #slide-image-2 {
@@ -131,18 +131,18 @@ img {
 }
 
 #slide-image-3 {
-  max-width: 30%;
-  max-height: 30%;
+  max-width: 15%;
+  max-height: 15%;
 }
 
 #slide-image-4 {
-  max-width: 30%;
-  max-height: 30%;
+  max-width: 15%;
+  max-height: 15%;
 }
 
 #slide-image-5 {
-  max-width: 30%;
-  max-height: 30%;
+  max-width: 15%;
+  max-height: 15%;
 }
 
 /* Фон для всієї каруселі */
