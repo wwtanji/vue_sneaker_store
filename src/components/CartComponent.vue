@@ -55,7 +55,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   name: "ProductList",
@@ -83,67 +82,60 @@ export default {
           price: 4399,
           image: "img/rb_1651_3gen.png",
         },
-        {
-          name: "NIKE AIR FORCE 1 LOW DRAKE X NOCTA \"CERTIFIED LOVER BOY CITRON TINT\"",
-          price: 6499,
-          image: "img/white-sneakers.png",
-        },
-        {
-          name: "NIKE AIR FORCE 1 LOW DRAKE X NOCTA \"CERTIFIED LOVER BOY PALEST PURPLE\"",
-          price: 6499,
-          image: "img/rb_1639.png",
-        },
-        {
-          name: "NIKE AIR FORCE 1 LOW LE \"TRIPLE WHITE\" (GS)",
-          price: 2732,
-          image: "img/rb_1650.png",
-        },
-        {
-          name: "NIKE AIR FORCE 1 LOW \"BLACK\"",
-          price: 4399,
-          image: "img/rb_1651_3gen.png",
-        },
       ],
       products: [],
-      sortMode: localStorage.getItem('sortMode') || 'default', // Завантажуємо попереднє сортування з localStorage
+      sortMode: localStorage.getItem("sortMode") || "default", // Завантажуємо попереднє сортування з localStorage
     };
   },
   methods: {
     // Сортування за ціною (найдешевші до найдорожчих)
     sortByPriceAsc() {
       this.products = [...this.originalProducts].sort((a, b) => a.price - b.price);
-      this.sortMode = 'Najlacnejšie';
-      localStorage.setItem('sortMode', this.sortMode); // Зберігаємо вибір у localStorage
+      this.sortMode = "Najlacnejšie";
+      localStorage.setItem("sortMode", this.sortMode); // Зберігаємо вибір у localStorage
     },
     // Сортування за ціною (найдорожчі до найдешевших)
     sortByPriceDesc() {
       this.products = [...this.originalProducts].sort((a, b) => b.price - a.price);
-      this.sortMode = 'Najdrahšie';
-      localStorage.setItem('sortMode', this.sortMode); // Зберігаємо вибір у localStorage
+      this.sortMode = "Najdrahšie";
+      localStorage.setItem("sortMode", this.sortMode); // Зберігаємо вибір у localStorage
     },
     // Сортування за алфавітом
     sortByAlphabet() {
       this.products = [...this.originalProducts].sort((a, b) => a.name.localeCompare(b.name));
-      this.sortMode = 'Abecedne';
-      localStorage.setItem('sortMode', this.sortMode); // Зберігаємо вибір у localStorage
+      this.sortMode = "Abecedne";
+      localStorage.setItem("sortMode", this.sortMode); // Зберігаємо вибір у localStorage
     },
     // Відновлення сортування до початкового стану (без сортування)
     resetSorting() {
       this.products = [...this.originalProducts]; // Скидаємо сортування
-      this.sortMode = 'default'; // Встановлюємо стандартний стан
-      localStorage.removeItem('sortMode'); // Видаляємо вибір із localStorage
+      this.sortMode = "default"; // Встановлюємо стандартний стан
+      localStorage.removeItem("sortMode"); // Видаляємо вибір із localStorage
     },
     // Обробник для кнопки "Buy"
     buyProduct(product) {
-      alert(`Ви обрали товар: ${product.name} за ${product.price} Kč`);
+      const basket = JSON.parse(localStorage.getItem("basket")) || [];
+      const existingProduct = basket.find((item) => item.name === product.name);
+
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      } else {
+        basket.push({
+          ...product,
+          quantity: 1,
+        });
+      }
+
+      localStorage.setItem("basket", JSON.stringify(basket));
+      alert(`Товар "${product.name}" додано до кошика!`);
     },
   },
   created() {
-    if (this.sortMode === 'Najlacnejšie') {
+    if (this.sortMode === "Najlacnejšie") {
       this.sortByPriceAsc();
-    } else if (this.sortMode === 'Najdrahšie') {
+    } else if (this.sortMode === "Najdrahšie") {
       this.sortByPriceDesc();
-    } else if (this.sortMode === 'Abecedne') {
+    } else if (this.sortMode === "Abecedne") {
       this.sortByAlphabet();
     } else {
       this.products = [...this.originalProducts];

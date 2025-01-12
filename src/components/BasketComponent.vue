@@ -7,9 +7,13 @@
       </button>
     </div>
     <div class="mt-8">
-      <div v-for="(item, index) in cartItems" :key="index" class="flex flex-col md:flex-row border-b border-gray-400 py-4">
+      <div
+        v-for="(item, index) in cartItems"
+        :key="index"
+        class="flex flex-col md:flex-row border-b border-gray-400 py-4"
+      >
         <div class="flex-shrink-0">
-          <img :src="item.image" alt="Product image" class="w-32 h-32 object-cover">
+          <img :src="item.image" alt="Product image" class="w-32 h-32 object-cover" />
         </div>
         <div class="mt-4 md:mt-0 md:ml-6">
           <h2 class="text-lg font-bold">{{ item.title }}</h2>
@@ -17,7 +21,13 @@
           <div class="mt-4 flex items-center">
             <span class="mr-2 text-gray-600">Quantity:</span>
             <div class="flex items-center">
-              <button @click="decreaseQuantity(index)" :disabled="item.quantity <= 1" class="bg-gray-200 rounded-l-lg px-2 py-1">-</button>
+              <button
+                @click="decreaseQuantity(index)"
+                :disabled="item.quantity <= 1"
+                class="bg-gray-200 rounded-l-lg px-2 py-1"
+              >
+                -
+              </button>
               <span class="mx-2 text-gray-600">{{ item.quantity }}</span>
               <button @click="increaseQuantity(index)" class="bg-gray-200 rounded-r-lg px-2 py-1">+</button>
             </div>
@@ -37,42 +47,40 @@
 export default {
   data() {
     return {
-      cartItems: [
-        {
-          title: "Product Title 1",
-          description: "Product Description 1",
-          price: 20.00,
-          quantity: 1,
-          image: "https://picsum.photos/id/237/150/150"
-        },
-        {
-          title: "Product Title 2",
-          description: "Product Description 2",
-          price: 15.00,
-          quantity: 1,
-          image: "https://picsum.photos/id/238/150/150"
-        }
-      ]
+      cartItems: JSON.parse(localStorage.getItem("basket")) || [], // Завантаження збережених товарів
     };
   },
   computed: {
     subtotal() {
       return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-    }
+    },
   },
   methods: {
     increaseQuantity(index) {
       this.cartItems[index].quantity++;
+      this.updateBasketStorage();
     },
     decreaseQuantity(index) {
       if (this.cartItems[index].quantity > 1) {
         this.cartItems[index].quantity--;
+        this.updateBasketStorage();
       }
     },
     formatPrice(price) {
       return `$${price.toFixed(2)}`;
-    }
-  }
+    },
+    updateBasketStorage() {
+      localStorage.setItem("basket", JSON.stringify(this.cartItems));
+    },
+  },
+  watch: {
+    cartItems: {
+      handler() {
+        this.updateBasketStorage();
+      },
+      deep: true,
+    },
+  },
 };
 </script>
 
