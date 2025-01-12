@@ -26,11 +26,11 @@
               <span class="mx-2 text-gray-600">{{ item.quantity }}</span>
               <button @click="increaseQuantity(index)" class="bg-gray-200 rounded-r-lg px-2 py-1">+</button>
             </div>
-            <span class="ml-auto font-bold">{{ formatPrice(item.price) }}</span>
           </div>
         </div>
-        <!-- Кнопка для видалення товару (з'являється лише при наявності товарів у кошику) -->
+        <!-- Кнопка для видалення товару та ціна поруч -->
         <div class="flex items-center mt-4 md:mt-0" v-if="cartItems.length > 0">
+          <span class="text-gray-600 mr-4">{{ formatPrice(item.price) }}</span>
           <button
             @click="removeItem(index)"
             class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"

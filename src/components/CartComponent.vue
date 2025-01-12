@@ -52,6 +52,18 @@
         </div>
       </div>
     </div>
+
+    <!-- Плавна анімація "V košíku" в центрі екрану -->
+    <transition name="fade">
+      <div
+        v-if="showBasketMessage"
+        class="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-gray-800"
+      >
+        <div class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg">
+          V košíku
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -60,7 +72,6 @@ export default {
   name: "ProductList",
   data() {
     return {
-      // Початковий список товарів
       originalProducts: [
         {
           name: "NIKE AIR FORCE 1 LOW DRAKE X NOCTA \"CERTIFIED LOVER BOY CITRON TINT\"",
@@ -84,35 +95,31 @@ export default {
         },
       ],
       products: [],
-      sortMode: localStorage.getItem("sortMode") || "default", // Завантажуємо попереднє сортування з localStorage
+      showBasketMessage: false, // Для анімації "V košíku"
+      sortMode: localStorage.getItem("sortMode") || "default",
     };
   },
   methods: {
-    // Сортування за ціною (найдешевші до найдорожчих)
     sortByPriceAsc() {
       this.products = [...this.originalProducts].sort((a, b) => a.price - b.price);
       this.sortMode = "Najlacnejšie";
-      localStorage.setItem("sortMode", this.sortMode); // Зберігаємо вибір у localStorage
+      localStorage.setItem("sortMode", this.sortMode);
     },
-    // Сортування за ціною (найдорожчі до найдешевших)
     sortByPriceDesc() {
       this.products = [...this.originalProducts].sort((a, b) => b.price - a.price);
       this.sortMode = "Najdrahšie";
-      localStorage.setItem("sortMode", this.sortMode); // Зберігаємо вибір у localStorage
+      localStorage.setItem("sortMode", this.sortMode);
     },
-    // Сортування за алфавітом
     sortByAlphabet() {
       this.products = [...this.originalProducts].sort((a, b) => a.name.localeCompare(b.name));
       this.sortMode = "Abecedne";
-      localStorage.setItem("sortMode", this.sortMode); // Зберігаємо вибір у localStorage
+      localStorage.setItem("sortMode", this.sortMode);
     },
-    // Відновлення сортування до початкового стану (без сортування)
     resetSorting() {
-      this.products = [...this.originalProducts]; // Скидаємо сортування
-      this.sortMode = "default"; // Встановлюємо стандартний стан
-      localStorage.removeItem("sortMode"); // Видаляємо вибір із localStorage
+      this.products = [...this.originalProducts];
+      this.sortMode = "default";
+      localStorage.removeItem("sortMode");
     },
-    // Обробник для кнопки "Buy"
     buyProduct(product) {
       const basket = JSON.parse(localStorage.getItem("basket")) || [];
       const existingProduct = basket.find((item) => item.name === product.name);
@@ -127,7 +134,12 @@ export default {
       }
 
       localStorage.setItem("basket", JSON.stringify(basket));
-      alert(`Товар "${product.name}" додано до кошика!`);
+
+      // Показуємо повідомлення "V košíku" на 3 секунди
+      this.showBasketMessage = true;
+      setTimeout(() => {
+        this.showBasketMessage = false;
+      }, 1000);
     },
   },
   created() {
@@ -145,5 +157,12 @@ export default {
 </script>
 
 <style scoped>
-/* Tailwind CSS використовується, додаткові стилі не потрібні */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>
