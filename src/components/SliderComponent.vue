@@ -6,8 +6,7 @@
       <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
         <!-- Item -->
         <div v-for="(slide, index) in slides" :key="index"
-          :class="['absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 duration-700 ease-in-out', { hidden: currentIndex !== index }]"
-          data-carousel-item>
+          :class="['absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 duration-700 ease-in-out', { hidden: currentIndex !== index }]">
           <div class="flex justify-center items-center h-full">
             <img :src="slide.src"
               :alt="slide.alt"
@@ -19,7 +18,7 @@
       </div>
 
       <!-- Slider indicators -->
-      <div class="absolute z-30 flex -translate-x-1/2 bottom-8 left-1/2 space-x-3 rtl:space-x-reverse"> <!-- Adjusted 'bottom' value -->
+      <div class="absolute z-30 flex -translate-x-1/2 bottom-8 left-1/2 space-x-3 rtl:space-x-reverse">
         <button v-for="(slide, index) in slides" :key="'indicator-' + index"
           @click="goToSlide(index)"
           :class="['w-3 h-3 rounded-full', { 'bg-gray-800': currentIndex === index, 'bg-gray-300': currentIndex !== index }]"
@@ -67,10 +66,12 @@
 </template>
 
 <script>
+import { useSliderStore } from '@/stores/sliderStore.js'; // Імпортуємо магазин
+import { watchEffect } from 'vue';
+
 export default {
   data() {
     return {
-      currentIndex: 0,
       slides: [
         { src: "/img/white-sneakers.png", alt: "Slide 1" },
         { src: "/img/rb_1639.png", alt: "Slide 2" },
@@ -78,28 +79,51 @@ export default {
         { src: "/img/rb_1650.png", alt: "Slide 4" },
         { src: "/img/rb_1651_3gen.png", alt: "Slide 5" }
       ],
+      sliderStore: null, // Initialize sliderStore as null
     };
+  },
+  computed: {
+    currentIndex() {
+      // Return 0 if sliderStore is not initialized yet
+      return this.sliderStore ? this.sliderStore.currentIndex : 0;
+    }
   },
   methods: {
     nextSlide() {
-      this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+      if (this.sliderStore) {
+        this.sliderStore.nextSlide();
+      }
     },
     prevSlide() {
-      this.currentIndex =
-        (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+      if (this.sliderStore) {
+        this.sliderStore.prevSlide();
+      }
     },
     goToSlide(index) {
-      this.currentIndex = index;
+      if (this.sliderStore) {
+        this.sliderStore.goToSlide(index);
+      }
     },
     handleClick(index) {
       alert(`You clicked on: ${this.slides[index].alt}`);
     }
   },
   mounted() {
-    // Автоматичне переключення слайдів
+    this.sliderStore = useSliderStore(); // Initialize the store during component mount
+
+    // WatchEffect ensures that the sliderStore is reactive
+    watchEffect(() => {
+      if (this.sliderStore) {
+        console.log('Slider store initialized:', this.sliderStore);
+      }
+    });
+
+    // Auto-advance the slides
     setInterval(() => {
-      this.nextSlide();
-    }, 5000); // Інтервал у 5 секунд
+      if (this.sliderStore) { // Check if the store is available
+        this.nextSlide();
+      }
+    }, 5000); // every 5 seconds
   },
 };
 </script>
