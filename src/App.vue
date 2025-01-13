@@ -9,9 +9,8 @@ import BasketIcon from './components/BasketIcon.vue';
   <div class="flex flex-col min-h-screen">
     <!-- Навбар -->
   <HeaderComponent />
-    <!-- Іконка кошика -->
-    <BasketIcon />
     <!-- Головний контент -->
+     <BasketIcon/>
     <main class="flex-grow mx-4">
       <RouterView />
     </main>

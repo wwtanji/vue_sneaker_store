@@ -3,9 +3,9 @@ import HomeView from '@/views/HomeView.vue' // Додав імпорт для Ho
 import BasketComponent from '@/components/BasketComponent.vue'
 import CartComponent from '@/components/CartComponent.vue'
 
-import AutenticitaComponent from '@/views/PodStranky/AutenticitaComponent.vue'
-import OnlinePodporaComponent from '@/views/PodStranky/OnlinePodpora.vue'
-import BezpecnaPlatbaComponent from '@/views/PodStranky/BezpecnaPlatba.vue'
+import Autenticita from '@/views/PodStranky/Autenticita.vue'
+import OnlinePodpora from '@/views/PodStranky/OnlinePodpora.vue'
+import BezpecnaPlatba from '@/views/PodStranky/BezpecnaPlatba.vue'
 
 import MoreNikeAirRed from '@/views/Products/MoreNikeAirRed.vue'
 import MoreNikeYellow from '@/views/Products/MoreNikeYellow.vue'
@@ -82,22 +82,22 @@ const router = createRouter({
     {
       path: '/autenticita',
       name: 'autenticita',
-      component: AutenticitaComponent
+      component: Autenticita
     },
     {
       path: '/bezpecna-platba',
       name: 'bezpecna-platba',
-      component: BezpecnaPlatbaComponent
+      component: BezpecnaPlatba
     },
     {
       path: '/online-podpora',
       name: 'online-podpora',
-      component: OnlinePodporaComponent
+      component: OnlinePodpora
     },
     {
       path: '/doprava-cr-sr',
       name: 'doprava-cr-sr',
-      component: BezpecnaPlatbaComponent
+      component: BezpecnaPlatba
     }
   ]
 })
