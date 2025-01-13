@@ -99,12 +99,12 @@
             price: 185,
             image: "img/rb_1651_3gen.png",
           },
-                  {
+          {
             name: "Air Force 1 Air Jordan \"ORANGE-WHITE-BLACK\"",
             price: 250,
             image: "img/jordan.png",
           },
-                  {
+          {
             name: "JORDAN 2\"BLACK\"",
             price: 222,
             image: "img/jordan1.png",

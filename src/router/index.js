@@ -2,10 +2,19 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue' // Додав імпорт для HomeView
 import BasketComponent from '@/components/BasketComponent.vue'
 import CartComponent from '@/components/CartComponent.vue'
-import ProductMoreComponent from '@/components/ProductMoreComponent.vue'
-import AutenticitaComponent from '@/components/AutenticitaComponent.vue'
-import BezpecnaPlatbaComponent from '@/components/BezpecnaPlatbaComponent.vue'
-import OnlinePodporaComponent from '@/components/OnlinePodporaComponent.vue'
+
+import AutenticitaComponent from '@/views/PodStranky/AutenticitaComponent.vue'
+import OnlinePodporaComponent from '@/views/PodStranky/OnlinePodpora.vue'
+import BezpecnaPlatbaComponent from '@/views/PodStranky/BezpecnaPlatba.vue'
+
+import MoreNikeAirRed from '@/views/Products/MoreNikeAirRed.vue'
+import MoreNikeYellow from '@/views/Products/MoreNikeYellow.vue'
+import MoreNikeAirLow from '@/views/Products/MoreNikeAirLow.vue'
+import MoreNikeAir from '@/views/Products/MoreNikeAir.vue'
+import MoreNikeAirOrange from '@/views/Products/MoreNikeAirOrange.vue'
+import MoreNikeAirJordan2 from '@/views/Products/MoreNikeAirJordan2.vue'
+import NikeAirForce1LowBlack from '@/views/Products/NikeAirForce1LowBlack.vue'
+import MoreNikeAirForceRun from '@/views/Products/MoreNikeAirForceRun.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,7 +42,42 @@ const router = createRouter({
     {
       path: '/product/1', // Динамічний маршрут для продукту
       name: 'product',
-      component: ProductMoreComponent
+      component: MoreNikeAir
+    },
+    {
+      path: '/product/2', // Динамічний маршрут для продукту
+      name: 'product2',
+      component: MoreNikeAirRed
+    },
+    {
+      path: '/product/3', // Динамічний маршрут для продукту
+      name: 'product3',
+      component: MoreNikeYellow
+    },
+    {
+      path: '/product/4', // Динамічний маршрут для продукту
+      name: 'product4',
+      component: MoreNikeAirLow
+    },
+    {
+      path: '/product/5',
+      name: 'product5',
+      component: MoreNikeAirOrange
+    },
+    {
+      path: '/product/6',
+      name: 'product6',
+      component: MoreNikeAirJordan2
+    },
+    {
+      path: '/product/7',
+      name: 'product7',
+      component: NikeAirForce1LowBlack
+    },
+    {
+      path: '/product/8',
+      name: 'product8',
+      component: MoreNikeAirForceRun
     },
     {
       path: '/autenticita',

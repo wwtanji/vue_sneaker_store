@@ -8,7 +8,7 @@ import BasketIcon from './components/BasketIcon.vue';
 <template>
   <div class="flex flex-col min-h-screen">
     <!-- Навбар -->
-    <HeaderComponent />
+  <HeaderComponent />
     <!-- Іконка кошика -->
     <BasketIcon />
     <!-- Головний контент -->
