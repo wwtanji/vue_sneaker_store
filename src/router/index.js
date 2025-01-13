@@ -49,6 +49,11 @@ const router = createRouter({
       path: '/online-podpora',
       name: 'online-podpora',
       component: OnlinePodporaComponent
+    },
+    {
+      path: '/doprava-cr-sr',
+      name: 'doprava-cr-sr',
+      component: BezpecnaPlatbaComponent
     }
   ]
 })
