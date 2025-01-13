@@ -3,6 +3,7 @@ import { RouterView } from 'vue-router';
 import FooterComponent from './components/FooterComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 import BasketIcon from './components/BasketIcon.vue';
+
 </script>
 
 <template>
