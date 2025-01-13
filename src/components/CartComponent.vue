@@ -35,7 +35,7 @@
       <div
         v-for="(product, index) in products"
         :key="index"
-        class="border rounded-lg p-4 text-center flex flex-col"
+        class="border rounded-lg p-4 flex flex-col text-center h-full"
       >
         <!-- Картинка з обробником події на клік для переходу до сторінки товару -->
         <img
@@ -46,15 +46,15 @@
         />
         <h3 class="text-lg font-semibold mb-2">{{ product.name }}</h3>
 
-        <!-- Кнопка "Buy" зліва та ціна справа -->
-        <div class="flex justify-between items-center mt-4">
+        <!-- Вирівнювання кнопки і ціни -->
+        <div class="flex justify-between items-center mt-auto">
           <button
             @click="buyProduct(product)"
             class="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             Buy
           </button>
-          <p class="text-gray-600">{{ product.price }} Kč</p>
+          <p class="text-gray-600">{{ product.price }} $</p>
         </div>
       </div>
     </div>
@@ -73,99 +73,119 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "ProductList",
-  data() {
-    return {
-      originalProducts: [
-        {
-          name: "NIKE AIR FORCE 1 LOW DRAKE X NOCTA \"CERTIFIED LOVER BOY CITRON TINT\"",
-          price: 6499,
-          image: "img/white-sneakers.png",
-        },
-        {
-          name: "NIKE AIR FORCE 1 LOW DRAKE X NOCTA \"CERTIFIED LOVER BOY PALEST PURPLE\"",
-          price: 6499,
-          image: "img/rb_1639.png",
-        },
-        {
-          name: "NIKE AIR FORCE 1 LOW LE \"TRIPLE WHITE\" (GS)",
-          price: 2732,
-          image: "img/rb_1650.png",
-        },
-        {
-          name: "NIKE AIR FORCE 1 LOW \"BLACK\"",
-          price: 4399,
-          image: "img/rb_1651_3gen.png",
-        },
-      ],
-      products: [],
-      showBasketMessage: false, // Для анімації "V košíku"
-      sortMode: localStorage.getItem("sortMode") || "default",
-    };
-  },
-  methods: {
-    // Переходить на сторінку продукту
-    goToProductPage(index) {
-      // Перенаправляє користувача на сторінку продукту
-      this.$router.push(`/product/${index + 1}`);
+  <script>
+  export default {
+    name: "ProductList",
+    data() {
+      return {
+        originalProducts: [
+          {
+            name: "NIKE AIR FORCE 1 LOW DRAKE X NOCTA \"CERTIFIED LOVER BOY CITRON TINT\"",
+            price: 170,
+            image: "img/white-sneakers.png",
+          },
+          {
+            name: "NIKE AIR FORCE 1 LOW DRAKE X NOCTA \"CERTIFIED LOVER BOY PALEST PURPLE\"",
+            price: 200,
+            image: "img/rb_1639.png",
+          },
+          {
+            name: "NIKE AIR FORCE 1 LOW LE \"TRIPLE WHITE\" (GS)",
+            price: 230,
+            image: "img/rb_1650.png",
+          },
+          {
+            name: "NIKE AIR FORCE 1 LOW \"BLACK\"",
+            price: 185,
+            image: "img/rb_1651_3gen.png",
+          },
+                  {
+            name: "Air Force 1 Air Jordan \"ORANGE-WHITE-BLACK\"",
+            price: 250,
+            image: "img/jordan.png",
+          },
+                  {
+            name: "JORDAN 2\"BLACK\"",
+            price: 222,
+            image: "img/jordan1.png",
+          },
+          {
+            name: "NIKE AIR FORCE 1 LOW \"BLACK\"",
+            price: 1000,
+            image: "img/rb_nike1.png",
+          },
+          {
+            name: "Nike Air Max \"BLACK\"",
+            price: 350,
+            image: "img/jordan4.png",
+          }
+        ],
+        products: [],
+        showBasketMessage: false, // Для анімації "V košíku"
+        sortMode: localStorage.getItem("sortMode") || "default",
+      };
     },
-    sortByPriceAsc() {
-      this.products = [...this.originalProducts].sort((a, b) => a.price - b.price);
-      this.sortMode = "Najlacnejšie";
-      localStorage.setItem("sortMode", this.sortMode);
-    },
-    sortByPriceDesc() {
-      this.products = [...this.originalProducts].sort((a, b) => b.price - a.price);
-      this.sortMode = "Najdrahšie";
-      localStorage.setItem("sortMode", this.sortMode);
-    },
-    sortByAlphabet() {
-      this.products = [...this.originalProducts].sort((a, b) => a.name.localeCompare(b.name));
-      this.sortMode = "Abecedne";
-      localStorage.setItem("sortMode", this.sortMode);
-    },
-    resetSorting() {
-      this.products = [...this.originalProducts];
-      this.sortMode = "default";
-      localStorage.removeItem("sortMode");
-    },
-    buyProduct(product) {
-      const basket = JSON.parse(localStorage.getItem("basket")) || [];
-      const existingProduct = basket.find((item) => item.name === product.name);
+    methods: {
+      // Переходить на сторінку продукту
+      goToProductPage(index) {
+        // Перенаправляє користувача на сторінку продукту
+        this.$router.push(`/product/${index + 1}`);
+      },
+      sortByPriceAsc() {
+        this.products = [...this.originalProducts].sort((a, b) => a.price - b.price);
+        this.sortMode = "Najlacnejšie";
+        localStorage.setItem("sortMode", this.sortMode);
+      },
+      sortByPriceDesc() {
+        this.products = [...this.originalProducts].sort((a, b) => b.price - a.price);
+        this.sortMode = "Najdrahšie";
+        localStorage.setItem("sortMode", this.sortMode);
+      },
+      sortByAlphabet() {
+        this.products = [...this.originalProducts].sort((a, b) => a.name.localeCompare(b.name));
+        this.sortMode = "Abecedne";
+        localStorage.setItem("sortMode", this.sortMode);
+      },
+      resetSorting() {
+        this.products = [...this.originalProducts];
+        this.sortMode = "default";
+        localStorage.removeItem("sortMode");
+      },
+      buyProduct(product) {
+        const basket = JSON.parse(localStorage.getItem("basket")) || [];
+        const existingProduct = basket.find((item) => item.name === product.name);
 
-      if (existingProduct) {
-        existingProduct.quantity += 1;
+        if (existingProduct) {
+          existingProduct.quantity += 1;
+        } else {
+          basket.push({
+            ...product,
+            quantity: 1,
+          });
+        }
+
+        localStorage.setItem("basket", JSON.stringify(basket));
+
+        // Показуємо повідомлення "V košíku" на 3 секунди
+        this.showBasketMessage = true;
+        setTimeout(() => {
+          this.showBasketMessage = false;
+        }, 1000);
+      },
+    },
+    created() {
+      if (this.sortMode === "Najlacnejšie") {
+        this.sortByPriceAsc();
+      } else if (this.sortMode === "Najdrahšie") {
+        this.sortByPriceDesc();
+      } else if (this.sortMode === "Abecedne") {
+        this.sortByAlphabet();
       } else {
-        basket.push({
-          ...product,
-          quantity: 1,
-        });
+        this.products = [...this.originalProducts];
       }
-
-      localStorage.setItem("basket", JSON.stringify(basket));
-
-      // Показуємо повідомлення "V košíku" на 3 секунди
-      this.showBasketMessage = true;
-      setTimeout(() => {
-        this.showBasketMessage = false;
-      }, 1000);
     },
-  },
-  created() {
-    if (this.sortMode === "Najlacnejšie") {
-      this.sortByPriceAsc();
-    } else if (this.sortMode === "Najdrahšie") {
-      this.sortByPriceDesc();
-    } else if (this.sortMode === "Abecedne") {
-      this.sortByAlphabet();
-    } else {
-      this.products = [...this.originalProducts];
-    }
-  },
-};
-</script>
+  };
+  </script>
 
 <style scoped>
 .fade-enter-active,

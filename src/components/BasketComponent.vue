@@ -1,7 +1,15 @@
 <template>
   <div class="container mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold my-4">Shopping Cart</h1>
-    <div class="mt-8">
+    <!-- Заголовок (показується тільки якщо є товари в кошику) -->
+    <h1 v-if="cartItems.length > 0" class="text-2xl font-bold my-4">Shopping Cart</h1>
+
+    <!-- Текст "Empty", якщо кошик порожній -->
+    <div v-else class="flex justify-center items-center h-64">
+      <h2 class="text-xl font-bold text-gray-500">Empty</h2>
+    </div>
+
+    <!-- Список товарів (відображається тільки якщо є товари) -->
+    <div v-if="cartItems.length > 0" class="mt-8">
       <div
         v-for="(item, index) in cartItems"
         :key="index"
@@ -29,7 +37,7 @@
           </div>
         </div>
         <!-- Кнопка для видалення товару та ціна поруч -->
-        <div class="flex items-center mt-4 md:mt-0" v-if="cartItems.length > 0">
+        <div class="flex items-center mt-4 md:mt-0">
           <span class="text-gray-600 mr-4">{{ formatPrice(item.price) }}</span>
           <button
             @click="removeItem(index)"
@@ -40,19 +48,21 @@
         </div>
       </div>
     </div>
-    <div class="flex justify-end items-center mt-8" v-if="cartItems.length > 0">
-      <span class="text-gray-600 mr-4">Subtotal:</span>
-      <span class="text-xl font-bold">{{ formatPrice(subtotal) }}</span>
-    </div>
 
-    <!-- Кнопка "Pay" (з'являється лише при наявності товарів у кошику) -->
-    <div class="mt-8 flex justify-center" v-if="cartItems.length > 0">
-      <button
-        @click="pay"
-        class="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg"
-      >
-        Pay
-      </button>
+    <!-- Підсумок і кнопка "Pay" -->
+    <div v-if="cartItems.length > 0">
+      <div class="flex justify-end items-center mt-8">
+        <span class="text-gray-600 mr-4">Subtotal:</span>
+        <span class="text-xl font-bold">{{ formatPrice(subtotal) }}</span>
+      </div>
+      <div class="mt-8 flex justify-center">
+        <button
+          @click="pay"
+          class="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg"
+        >
+          Pay
+        </button>
+      </div>
     </div>
 
     <!-- Анімація успішної оплати -->
@@ -71,8 +81,8 @@
 export default {
   data() {
     return {
-      cartItems: JSON.parse(localStorage.getItem("basket")) || [], // Завантаження збережених товарів
-      paymentSuccess: false, // Стан для показу анімації
+      cartItems: JSON.parse(localStorage.getItem("basket")) || [],
+      paymentSuccess: false,
     };
   },
   computed: {
@@ -92,15 +102,15 @@ export default {
       }
     },
     removeItem(index) {
-      this.cartItems.splice(index, 1); // Видаляємо товар із масиву
-      this.updateBasketStorage(); // Оновлюємо localStorage
+      this.cartItems.splice(index, 1);
+      this.updateBasketStorage();
     },
     pay() {
-      this.cartItems = []; // Очищаємо кошик
-      this.updateBasketStorage(); // Оновлюємо localStorage
-      this.paymentSuccess = true; // Показуємо анімацію
+      this.cartItems = [];
+      this.updateBasketStorage();
+      this.paymentSuccess = true;
       setTimeout(() => {
-        this.paymentSuccess = false; // Ховаємо анімацію через 3 секунди
+        this.paymentSuccess = false;
       }, 3000);
     },
     formatPrice(price) {
@@ -114,7 +124,6 @@ export default {
 </script>
 
 <style scoped>
-/* Анімація появи та зникнення повідомлення */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;

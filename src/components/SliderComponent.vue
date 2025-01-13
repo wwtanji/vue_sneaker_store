@@ -66,9 +66,6 @@
 </template>
 
 <script>
-import { useSliderStore } from '@/stores/sliderStore.js'; // Імпортуємо магазин
-import { watchEffect } from 'vue';
-
 export default {
   data() {
     return {
@@ -79,52 +76,29 @@ export default {
         { src: "/img/rb_1650.png", alt: "Slide 4" },
         { src: "/img/rb_1651_3gen.png", alt: "Slide 5" }
       ],
-      sliderStore: null, // Initialize sliderStore as null
+      currentIndex: 0,
     };
-  },
-  computed: {
-    currentIndex() {
-      // Return 0 if sliderStore is not initialized yet
-      return this.sliderStore ? this.sliderStore.currentIndex : 0;
-    }
   },
   methods: {
     nextSlide() {
-      if (this.sliderStore) {
-        this.sliderStore.nextSlide();
-      }
+      this.currentIndex = (this.currentIndex + 1) % this.slides.length;
     },
     prevSlide() {
-      if (this.sliderStore) {
-        this.sliderStore.prevSlide();
-      }
+      this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
     },
     goToSlide(index) {
-      if (this.sliderStore) {
-        this.sliderStore.goToSlide(index);
-      }
+      this.currentIndex = index;
     },
     handleClick(index) {
       alert(`You clicked on: ${this.slides[index].alt}`);
     }
   },
   mounted() {
-    this.sliderStore = useSliderStore(); // Initialize the store during component mount
-
-    // WatchEffect ensures that the sliderStore is reactive
-    watchEffect(() => {
-      if (this.sliderStore) {
-        console.log('Slider store initialized:', this.sliderStore);
-      }
-    });
-
-    // Auto-advance the slides
+    // Auto-advance the slides every 5 seconds
     setInterval(() => {
-      if (this.sliderStore) { // Check if the store is available
-        this.nextSlide();
-      }
+      this.nextSlide();
     }, 5000); // every 5 seconds
-  },
+  }
 };
 </script>
 
