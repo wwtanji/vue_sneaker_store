@@ -3,6 +3,9 @@ import HomeView from '@/views/HomeView.vue' // Додав імпорт для Ho
 import BasketComponent from '@/components/BasketComponent.vue'
 import CartComponent from '@/components/CartComponent.vue'
 import ProductMoreComponent from '@/components/ProductMoreComponent.vue'
+import AutenticitaComponent from '@/components/AutenticitaComponent.vue'
+import BezpecnaPlatbaComponent from '@/components/BezpecnaPlatbaComponent.vue'
+import OnlinePodporaComponent from '@/components/OnlinePodporaComponent.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +34,21 @@ const router = createRouter({
       path: '/product/1', // Динамічний маршрут для продукту
       name: 'product',
       component: ProductMoreComponent
+    },
+    {
+      path: '/autenticita',
+      name: 'autenticita',
+      component: AutenticitaComponent
+    },
+    {
+      path: '/bezpecna-platba',
+      name: 'bezpecna-platba',
+      component: BezpecnaPlatbaComponent
+    },
+    {
+      path: '/online-podpora',
+      name: 'online-podpora',
+      component: OnlinePodporaComponent
     }
   ]
 })
