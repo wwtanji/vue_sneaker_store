@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-3xl mx-auto p-6 bg-gray-50 rounded-xl shadow-lg font-sans text-gray-800">
+  <div class="max-w-3xl mx-auto p-6 bg-gray-50 rounded-xl shadow-lg font-sans text-gray-800 mt-8 mb-8">
     <!-- Title -->
     <h1 class="text-4xl font-bold text-center mb-8 text-gradient">Záruka Autenticity</h1>
     <p class="text-xl text-center mb-10 text-gray-600">Pohodlný nákup bez starostí</p>
@@ -119,7 +119,7 @@ export default {
 
 /* Title gradient text */
 .text-gradient {
-  background: linear-gradient(90deg, rgba(255, 0, 150, 1) 0%, rgba(0, 204, 255, 1) 100%);
+  background: black;
   -webkit-background-clip: text;
   color: transparent;
 }
