@@ -6,9 +6,9 @@ export const useSliderStore = defineStore('slider', {
     slides: [
       { src: "/img/white-sneakers.png", alt: "Slide 1" },
       { src: "/img/rb_1639.png", alt: "Slide 2" },
-      { src: "/img/rb_1651_3gen.png", alt: "Slide 3" },
-      { src: "/img/rb_1650.png", alt: "Slide 4" },
-      { src: "/img/rb_1651_3gen.png", alt: "Slide 5" }
+      { src: "/img/rb_1650.png", alt: "Slide 3" },
+      { src: "/img/rb_1651_3gen.png", alt: "Slide 4" },
+      { src: "/img/jordan.png", alt: "Slide 5" }
     ],
     currentIndex: 0,
   }),

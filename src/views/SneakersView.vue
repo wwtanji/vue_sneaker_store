@@ -153,18 +153,19 @@ export default {
       this.filterByGender();
     },
     filterByGender() {
-      if (this.selectedGenders.includes('Men')) {
-        this.filteredProducts = this.originalProducts.filter((product) =>
-          product.name === 'Air Force 1 Air Jordan "ORANGE-WHITE-BLACK"' ||
-          product.name === 'JORDAN 2"BLACK"'
-        );
-      } else if (this.selectedGenders.includes('Women')) {
-        this.filteredProducts = this.originalProducts.filter((product) =>
-          product.name !== 'Air Force 1 Air Jordan "ORANGE-WHITE-BLACK"' &&
-          product.name !== 'JORDAN 2"BLACK"'
-        );
-      } else {
+      if (this.selectedGenders.length === 0) {
         this.filteredProducts = [...this.originalProducts]; // if no gender selected, show all products
+      } else {
+        // Show products that match the selected genders
+        this.filteredProducts = this.originalProducts.filter((product) => {
+          const isMen = this.selectedGenders.includes('Men') &&
+                        (product.name === 'Air Force 1 Air Jordan "ORANGE-WHITE-BLACK"' ||
+                         product.name === 'JORDAN 2"BLACK"');
+          const isWomen = this.selectedGenders.includes('Women') &&
+                          (product.name !== 'Air Force 1 Air Jordan "ORANGE-WHITE-BLACK"' &&
+                           product.name !== 'JORDAN 2"BLACK"');
+          return isMen || isWomen;
+        });
       }
     },
   },

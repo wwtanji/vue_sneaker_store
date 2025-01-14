@@ -15,7 +15,7 @@ import MoreNikeAirJordan2 from '@/views/Products/MoreNikeAirJordan2.vue'
 import NikeAirForce1LowBlack from '@/views/Products/NikeAirForce1LowBlack.vue'
 import MoreNikeAirForceRun from '@/views/Products/MoreNikeAirForceRun.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
-import TestView from '@/views/TestView.vue'
+import SneakersView from '@/views/SneakersView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,7 +33,7 @@ const router = createRouter({
     {
       path: '/sneakers',
       name: 'sneakers',
-      component: TestView
+      component: SneakersView
     },
     {
       path: '/basket',

@@ -12,7 +12,7 @@
               :alt="slide.alt"
               :id="'slide-image-' + index"
               class="w-auto max-h-full cursor-pointer"
-              @click="sliderStore.handleClick(index)">
+              @click="handleClick(index)">
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@ export default {
       this.sliderStore.goToSlide(index);
     },
     handleClick(index) {
-      this.sliderStore.handleClick(index);
+      this.$router.push(`/product/${index + 1}`);
     }
   },
   mounted() {
