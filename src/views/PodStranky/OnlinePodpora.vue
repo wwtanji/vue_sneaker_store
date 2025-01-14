@@ -28,7 +28,9 @@
             ></textarea>
             <div>
               <input type="checkbox" class="mr-2" required />
-              <span class="text-sm text-gray-600">Souhlasím s podmínkami ochrany osobních údajů</span>
+              <span class="text-sm text-gray-600"
+                >Souhlasím s podmínkami ochrany osobních údajů</span
+              >
             </div>
             <button
               :class="isSubmitted ? 'bg-gray-600' : 'bg-indigo-600 hover:bg-indigo-800'"
@@ -51,26 +53,27 @@ export default {
       formData: {
         name: '',
         email: '',
-        message: '',
+        message: ''
       },
-      isSubmitted: false,
-    };
+      isSubmitted: false
+    }
   },
   methods: {
     handleSubmit() {
-      console.log('Form data:', this.formData);
-      this.isSubmitted = true;
+      console.log('Form data:', this.formData)
+      this.isSubmitted = true
 
       setTimeout(() => {
-        this.isSubmitted = false;
-      }, 3000);
-    },
-  },
-};
+        this.isSubmitted = false
+      }, 3000)
+    }
+  }
+}
 </script>
 
 <style scoped>
-input, textarea {
+input,
+textarea {
   border: 1px solid #d1d5db; /* light gray border */
 }
 </style>

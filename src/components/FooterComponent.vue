@@ -10,33 +10,33 @@ export default defineComponent({
           About: '#',
           Careers: '#',
           'Brand Center': '#',
-          Blog: '#',
+          Blog: '#'
         },
         'Help Center': {
           'Discord Server': '#',
           Twitter: '#',
           Facebook: '#',
-          'Contact Us': '#',
+          'Contact Us': '#'
         },
         Legal: {
           'Privacy Policy': '#',
           Licensing: '#',
-          'Terms & Conditions': '#',
+          'Terms & Conditions': '#'
         },
         Download: {
           iOS: '#',
           Android: '#',
           Windows: '#',
-          MacOS: '#',
-        },
-      },
+          MacOS: '#'
+        }
+      }
     }
   },
   computed: {
     currentYear(): number {
       return new Date().getFullYear()
-    },
-  },
+    }
+  }
 })
 </script>
 

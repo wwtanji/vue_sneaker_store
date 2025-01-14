@@ -16,7 +16,8 @@
               name="gender"
               v-model="selectedGenders"
               @change="applyFilters"
-            /> {{ option.label }} ({{ option.count }})
+            />
+            {{ option.label }} ({{ option.count }})
           </label>
         </div>
       </div>
@@ -61,9 +62,7 @@
           v-if="showBasketMessage"
           class="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-gray-800"
         >
-          <div class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg">
-            V košíku
-          </div>
+          <div class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg">V košíku</div>
         </div>
       </transition>
     </div>
@@ -72,111 +71,113 @@
 
 <script>
 export default {
-  name: "ProductList",
+  name: 'ProductList',
   data() {
     return {
       originalProducts: [
         {
-          name: "NIKE AIR FORCE 1 LOW DRAKE X NOCTA \"CERTIFIED LOVER BOY CITRON TINT\"",
+          name: 'NIKE AIR FORCE 1 LOW DRAKE X NOCTA "CERTIFIED LOVER BOY CITRON TINT"',
           price: 170,
-          image: "img/white-sneakers.png",
+          image: 'img/white-sneakers.png'
         },
         {
-          name: "NIKE AIR FORCE 1 LOW DRAKE X NOCTA \"CERTIFIED LOVER BOY PALEST PURPLE\"",
+          name: 'NIKE AIR FORCE 1 LOW DRAKE X NOCTA "CERTIFIED LOVER BOY PALEST PURPLE"',
           price: 200,
-          image: "img/rb_1639.png",
+          image: 'img/rb_1639.png'
         },
         {
-          name: "NIKE AIR FORCE 1 LOW LE \"TRIPLE WHITE\" (GS)",
+          name: 'NIKE AIR FORCE 1 LOW LE "TRIPLE WHITE" (GS)',
           price: 230,
-          image: "img/rb_1650.png",
+          image: 'img/rb_1650.png'
         },
         {
-          name: "NIKE AIR FORCE 1 LOW \"BLACK\"",
+          name: 'NIKE AIR FORCE 1 LOW "BLACK"',
           price: 185,
-          image: "img/rb_1651_3gen.png",
+          image: 'img/rb_1651_3gen.png'
         },
         {
-          name: "Air Force 1 Air Jordan \"ORANGE-WHITE-BLACK\"",
+          name: 'Air Force 1 Air Jordan "ORANGE-WHITE-BLACK"',
           price: 250,
-          image: "img/jordan.png",
+          image: 'img/jordan.png'
         },
         {
-          name: "JORDAN 2\"BLACK\"",
+          name: 'JORDAN 2"BLACK"',
           price: 222,
-          image: "img/jordan1.png",
+          image: 'img/jordan1.png'
         },
         {
-          name: "NIKE AIR FORCE 1 LOW \"BLACK\"",
+          name: 'NIKE AIR FORCE 1 LOW "BLACK"',
           price: 1000,
-          image: "img/rb_nike1.png",
+          image: 'img/rb_nike1.png'
         },
         {
-          name: "Nike Air Max \"BLACK\"",
+          name: 'Nike Air Max "BLACK"',
           price: 350,
-          image: "img/jordan4.png",
-        },
+          image: 'img/jordan4.png'
+        }
       ],
       filteredProducts: [],
       showBasketMessage: false,
       selectedGenders: [],
       genders: [
         { label: 'Men', count: 2 },
-        { label: 'Women', count: 6 },
-      ],
-    };
+        { label: 'Women', count: 6 }
+      ]
+    }
   },
   methods: {
     goToProductPage(index) {
-      this.$router.push(`/product/${index + 1}`);
+      this.$router.push(`/product/${index + 1}`)
     },
     buyProduct(product) {
-      const basket = JSON.parse(localStorage.getItem("basket")) || [];
-      const existingProduct = basket.find((item) => item.name === product.name);
+      const basket = JSON.parse(localStorage.getItem('basket')) || []
+      const existingProduct = basket.find((item) => item.name === product.name)
 
       if (existingProduct) {
-        existingProduct.quantity += 1;
+        existingProduct.quantity += 1
       } else {
         basket.push({
           ...product,
-          quantity: 1,
-        });
+          quantity: 1
+        })
       }
 
-      localStorage.setItem("basket", JSON.stringify(basket));
-      this.showBasketMessage = true;
+      localStorage.setItem('basket', JSON.stringify(basket))
+      this.showBasketMessage = true
       setTimeout(() => {
-        this.showBasketMessage = false;
-      }, 1000);
+        this.showBasketMessage = false
+      }, 1000)
     },
     applyFilters() {
-      this.filterByGender();
+      this.filterByGender()
     },
     filterByGender() {
       if (this.selectedGenders.length === 0) {
-        this.filteredProducts = [...this.originalProducts]; // if no gender selected, show all products
+        this.filteredProducts = [...this.originalProducts] // if no gender selected, show all products
       } else {
         // Show products that match the selected genders
         this.filteredProducts = this.originalProducts.filter((product) => {
-          const isMen = this.selectedGenders.includes('Men') &&
-                        (product.name === 'Air Force 1 Air Jordan "ORANGE-WHITE-BLACK"' ||
-                         product.name === 'JORDAN 2"BLACK"');
-          const isWomen = this.selectedGenders.includes('Women') &&
-                          (product.name !== 'Air Force 1 Air Jordan "ORANGE-WHITE-BLACK"' &&
-                           product.name !== 'JORDAN 2"BLACK"');
-          return isMen || isWomen;
-        });
+          const isMen =
+            this.selectedGenders.includes('Men') &&
+            (product.name === 'Air Force 1 Air Jordan "ORANGE-WHITE-BLACK"' ||
+              product.name === 'JORDAN 2"BLACK"')
+          const isWomen =
+            this.selectedGenders.includes('Women') &&
+            product.name !== 'Air Force 1 Air Jordan "ORANGE-WHITE-BLACK"' &&
+            product.name !== 'JORDAN 2"BLACK"'
+          return isMen || isWomen
+        })
       }
-    },
+    }
   },
   created() {
     // Check for saved gender preferences in localStorage
-    const savedGenders = JSON.parse(localStorage.getItem('selectedGenders'));
+    const savedGenders = JSON.parse(localStorage.getItem('selectedGenders'))
     if (savedGenders && savedGenders.length > 0) {
-      this.selectedGenders = savedGenders;
-      this.filterByGender(); // Apply filter if any gender was selected previously
+      this.selectedGenders = savedGenders
+      this.filterByGender() // Apply filter if any gender was selected previously
     }
-    this.filteredProducts = [...this.originalProducts];
-  },
-};
+    this.filteredProducts = [...this.originalProducts]
+  }
+}
 </script>

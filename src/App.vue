@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
-import FooterComponent from './components/FooterComponent.vue';
-import HeaderComponent from './components/HeaderComponent.vue';
-import BasketIcon from './components/BasketIcon.vue';
-
+import { RouterView } from 'vue-router'
+import FooterComponent from './components/FooterComponent.vue'
+import HeaderComponent from './components/HeaderComponent.vue'
+import BasketIcon from './components/BasketIcon.vue'
 </script>
 
 <template>
   <div class="flex flex-col min-h-screen">
     <!-- Навбар -->
-  <HeaderComponent />
+    <HeaderComponent />
     <!-- Головний контент -->
-     <BasketIcon/>
+    <BasketIcon />
     <main class="flex-grow mx-4">
       <RouterView />
     </main>

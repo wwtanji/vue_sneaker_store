@@ -32,7 +32,9 @@
                 -
               </button>
               <span class="mx-2 text-gray-600">{{ item.quantity }}</span>
-              <button @click="increaseQuantity(index)" class="bg-gray-200 rounded-r-lg px-2 py-1">+</button>
+              <button @click="increaseQuantity(index)" class="bg-gray-200 rounded-r-lg px-2 py-1">
+                +
+              </button>
             </div>
           </div>
         </div>
@@ -81,46 +83,46 @@
 export default {
   data() {
     return {
-      cartItems: JSON.parse(localStorage.getItem("basket")) || [],
-      paymentSuccess: false,
-    };
+      cartItems: JSON.parse(localStorage.getItem('basket')) || [],
+      paymentSuccess: false
+    }
   },
   computed: {
     subtotal() {
-      return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-    },
+      return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
+    }
   },
   methods: {
     increaseQuantity(index) {
-      this.cartItems[index].quantity++;
-      this.updateBasketStorage();
+      this.cartItems[index].quantity++
+      this.updateBasketStorage()
     },
     decreaseQuantity(index) {
       if (this.cartItems[index].quantity > 1) {
-        this.cartItems[index].quantity--;
-        this.updateBasketStorage();
+        this.cartItems[index].quantity--
+        this.updateBasketStorage()
       }
     },
     removeItem(index) {
-      this.cartItems.splice(index, 1);
-      this.updateBasketStorage();
+      this.cartItems.splice(index, 1)
+      this.updateBasketStorage()
     },
     pay() {
-      this.cartItems = [];
-      this.updateBasketStorage();
-      this.paymentSuccess = true;
+      this.cartItems = []
+      this.updateBasketStorage()
+      this.paymentSuccess = true
       setTimeout(() => {
-        this.paymentSuccess = false;
-      }, 3000);
+        this.paymentSuccess = false
+      }, 3000)
     },
     formatPrice(price) {
-      return `$${price.toFixed(2)}`;
+      return `$${price.toFixed(2)}`
     },
     updateBasketStorage() {
-      localStorage.setItem("basket", JSON.stringify(this.cartItems));
-    },
-  },
-};
+      localStorage.setItem('basket', JSON.stringify(this.cartItems))
+    }
+  }
+}
 </script>
 
 <style scoped>
