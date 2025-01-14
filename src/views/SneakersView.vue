@@ -118,66 +118,56 @@ export default {
       ],
       filteredProducts: [],
       showBasketMessage: false,
-      selectedGenders: [],
+      selectedGenders: [], // Start with no selected filters
       genders: [
         { label: 'Men', count: 2 },
         { label: 'Women', count: 6 }
       ]
-    }
+    };
   },
   methods: {
     goToProductPage(index) {
-      this.$router.push(`/product/${index + 1}`)
+      this.$router.push(`/product/${index + 1}`);
     },
     buyProduct(product) {
-      const basket = JSON.parse(localStorage.getItem('basket')) || []
-      const existingProduct = basket.find((item) => item.name === product.name)
+      const basket = JSON.parse(localStorage.getItem('basket')) || [];
+      const existingProduct = basket.find((item) => item.name === product.name);
 
       if (existingProduct) {
-        existingProduct.quantity += 1
+        existingProduct.quantity += 1;
       } else {
-        basket.push({
-          ...product,
-          quantity: 1
-        })
+        basket.push({ ...product, quantity: 1 });
       }
 
-      localStorage.setItem('basket', JSON.stringify(basket))
-      this.showBasketMessage = true
+      localStorage.setItem('basket', JSON.stringify(basket));
+      this.showBasketMessage = true;
       setTimeout(() => {
-        this.showBasketMessage = false
-      }, 1000)
+        this.showBasketMessage = false;
+      }, 1000);
     },
     applyFilters() {
-      this.filterByGender()
+      this.filterByGender();
     },
     filterByGender() {
       if (this.selectedGenders.length === 0) {
-        this.filteredProducts = [...this.originalProducts] // if no gender selected, show all products
+        this.filteredProducts = [...this.originalProducts]; // if no gender selected, show all products
       } else {
-        // Show products that match the selected genders
         this.filteredProducts = this.originalProducts.filter((product) => {
           const isMen =
             this.selectedGenders.includes('Men') &&
             (product.name === 'Air Force 1 Air Jordan "ORANGE-WHITE-BLACK"' ||
-              product.name === 'JORDAN 2"BLACK"')
+              product.name === 'JORDAN 2"BLACK"');
           const isWomen =
             this.selectedGenders.includes('Women') &&
             product.name !== 'Air Force 1 Air Jordan "ORANGE-WHITE-BLACK"' &&
-            product.name !== 'JORDAN 2"BLACK"'
-          return isMen || isWomen
-        })
+            product.name !== 'JORDAN 2"BLACK"';
+          return isMen || isWomen;
+        });
       }
     }
   },
   created() {
-    // Check for saved gender preferences in localStorage
-    const savedGenders = JSON.parse(localStorage.getItem('selectedGenders'))
-    if (savedGenders && savedGenders.length > 0) {
-      this.selectedGenders = savedGenders
-      this.filterByGender() // Apply filter if any gender was selected previously
-    }
-    this.filteredProducts = [...this.originalProducts]
+    this.filteredProducts = [...this.originalProducts]; // Initialize with all products
   }
-}
+};
 </script>
