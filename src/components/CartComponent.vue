@@ -1,6 +1,6 @@
 <template>
   <div class="p-6">
-    <h2 class="text-2xl font-bold mb-4">NIKE AIR FORCE 1</h2>
+    <h2 class="text-2xl font-bold mb-4">NOVYNKY 2025</h2>
 
     <!-- Кнопки для сортування -->
     <div class="mb-4 flex space-x-4">

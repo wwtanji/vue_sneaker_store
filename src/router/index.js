@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue' // Додав імпорт для HomeView
+import HomeView from '@/views/HomeView.vue' //
 import BasketComponent from '@/components/BasketComponent.vue'
-import CartComponent from '@/components/CartComponent.vue'
 
 import Autenticita from '@/views/PodStranky/Autenticita.vue'
 import OnlinePodpora from '@/views/PodStranky/OnlinePodpora.vue'
@@ -15,6 +14,8 @@ import MoreNikeAirOrange from '@/views/Products/MoreNikeAirOrange.vue'
 import MoreNikeAirJordan2 from '@/views/Products/MoreNikeAirJordan2.vue'
 import NikeAirForce1LowBlack from '@/views/Products/NikeAirForce1LowBlack.vue'
 import MoreNikeAirForceRun from '@/views/Products/MoreNikeAirForceRun.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
+import TestView from '@/views/TestView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,14 +26,14 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/', // Це кореневий шлях, він вже має працювати для HomeView
+      path: '/',
       name: 'home1',
       component: HomeView
     },
     {
       path: '/sneakers',
       name: 'sneakers',
-      component: CartComponent // Ви вже імпортували цей компонент без динамічного імпорту
+      component: TestView
     },
     {
       path: '/basket',
@@ -40,22 +41,22 @@ const router = createRouter({
       component: BasketComponent
     },
     {
-      path: '/product/1', // Динамічний маршрут для продукту
+      path: '/product/1',
       name: 'product',
       component: MoreNikeAir
     },
     {
-      path: '/product/2', // Динамічний маршрут для продукту
+      path: '/product/2',
       name: 'product2',
       component: MoreNikeAirRed
     },
     {
-      path: '/product/3', // Динамічний маршрут для продукту
+      path: '/product/3',
       name: 'product3',
       component: MoreNikeYellow
     },
     {
-      path: '/product/4', // Динамічний маршрут для продукту
+      path: '/product/4',
       name: 'product4',
       component: MoreNikeAirLow
     },
@@ -98,6 +99,10 @@ const router = createRouter({
       path: '/doprava-cr-sr',
       name: 'doprava-cr-sr',
       component: BezpecnaPlatba
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: NotFoundView
     }
   ]
 })
