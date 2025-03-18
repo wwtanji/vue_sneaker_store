@@ -1,14 +1,11 @@
 <template>
   <div class="container mx-auto px-4 py-8">
-    <!-- Заголовок (показується тільки якщо є товари в кошику) -->
     <h1 v-if="cartItems.length > 0" class="text-2xl font-bold my-4">Shopping Cart</h1>
 
-    <!-- Текст "Empty", якщо кошик порожній -->
     <div v-else class="flex justify-center items-center h-64">
       <h2 class="text-xl font-bold text-gray-500">Empty</h2>
     </div>
 
-    <!-- Список товарів (відображається тільки якщо є товари) -->
     <div v-if="cartItems.length > 0" class="mt-8">
       <div
         v-for="(item, index) in cartItems"
@@ -38,7 +35,6 @@
             </div>
           </div>
         </div>
-        <!-- Кнопка для видалення товару та ціна поруч -->
         <div class="flex items-center mt-4 md:mt-0">
           <span class="text-gray-600 mr-4">{{ formatPrice(item.price) }}</span>
           <button
@@ -51,7 +47,6 @@
       </div>
     </div>
 
-    <!-- Підсумок і кнопка "Pay" -->
     <div v-if="cartItems.length > 0">
       <div class="flex justify-end items-center mt-8">
         <span class="text-gray-600 mr-4">Subtotal:</span>
@@ -67,7 +62,6 @@
       </div>
     </div>
 
-    <!-- Анімація успішної оплати -->
     <transition name="fade">
       <div
         v-if="paymentSuccess"

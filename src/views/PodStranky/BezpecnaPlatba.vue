@@ -1,6 +1,5 @@
 <template>
   <div class="max-w-7xl mx-auto px-6 py-12 bg-gray-50 mt-24 mb-24">
-    <!-- Заголовок сторінки -->
     <p class="text-black text-center text-xl md:text-2xl leading-relaxed mb-12">
       Všechno naše zboží je kvalitně zabaleno, aby nedošlo k poškození při přepravě, a to ve dvou
       krabicích (krabice s teniskami uvnitř lepenkové krabice). Zboží je expedováno v nejkratším
@@ -9,7 +8,6 @@
     </p>
 
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
-      <!-- Section Item 1 -->
       <div class="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md">
         <img src="/svg/money.svg" alt="Možnosti platby" class="w-12 h-12 mb-4" />
         <h3 class="text-xl md:text-2xl font-semibold text-black mb-2">Možnosti platby</h3>
@@ -22,7 +20,6 @@
         </p>
       </div>
 
-      <!-- Section Item 2 -->
       <div class="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md">
         <img src="/svg/post.svg" alt="Možnosti dopravy" class="w-12 h-12 mb-4" />
         <h3 class="text-xl md:text-2xl font-semibold text-black mb-2">Možnosti dopravy</h3>
@@ -33,7 +30,6 @@
         </p>
       </div>
 
-      <!-- Section Item 3 -->
       <div class="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md">
         <img src="/svg/transport-truct.svg" alt="Zásilkovna" class="w-12 h-12 mb-4" />
         <h3 class="text-xl md:text-2xl font-semibold text-black mb-2">
@@ -45,7 +41,6 @@
         </p>
       </div>
 
-      <!-- Section Item 4 -->
       <div class="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md">
         <img src="/svg/handshake.svg" alt="Doručení na adresu" class="w-12 h-12 mb-4" />
         <h3 class="text-xl md:text-2xl font-semibold text-black mb-2">Doručení na adresu</h3>
@@ -56,7 +51,6 @@
         </p>
       </div>
 
-      <!-- Section Item 5 -->
       <div class="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md">
         <img src="/svg/rocket.svg" alt="Dodatočné zrýchlené odoslanie" class="w-12 h-12 mb-4" />
         <h3 class="text-xl md:text-2xl font-semibold text-black mb-2">
@@ -70,7 +64,6 @@
         </p>
       </div>
 
-      <!-- Section Item 6 -->
       <div class="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md">
         <img src="/svg/global.svg" alt="Doprava a platba pre Slovensko" class="w-12 h-12 mb-4" />
         <h3 class="text-xl md:text-2xl font-semibold text-black mb-2">
@@ -83,9 +76,7 @@
       </div>
     </div>
 
-    <!-- Відступ перед футером -->
     <div class="mt-24"></div>
-    <!-- Це створює відступ перед футером -->
   </div>
 </template>
 

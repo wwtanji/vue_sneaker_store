@@ -2,7 +2,6 @@
   <div class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
       <div class="flex flex-wrap -mx-4 relative">
-        <!-- Back arrow button placed outside the image container, on the left -->
         <button
           @click="goBack"
           class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-600 text-white p-2 rounded-full hover:bg-gray-800 focus:outline-none"
@@ -19,7 +18,6 @@
           </svg>
         </button>
 
-        <!-- Product Images -->
         <div class="w-full md:w-1/2 px-4 mb-8">
           <transition name="fade" @before-enter="beforeEnter" @enter="enter" @leave="leave">
             <img
@@ -43,7 +41,6 @@
           </div>
         </div>
 
-        <!-- Product Details -->
         <div class="w-full md:w-1/2 px-4">
           <h2 class="text-3xl font-bold mb-2">{{ product.name }}</h2>
           <p class="text-gray-600 mb-4">SKU: AF1BLACK01</p>
@@ -118,7 +115,6 @@
             </ul>
           </div>
 
-          <!-- Basket Notification -->
           <transition name="fade-message">
             <div
               v-if="showBasketMessage"
@@ -137,30 +133,29 @@
 export default {
   data() {
     return {
-      mainImage: '/img/rb_nike1.png', // Image for the Air Force 1 Low 'Black'
+      mainImage: '/img/rb_nike1.png',
       thumbnailImages: [
-        '/img/rb_nike1.png', // Thumbnail image for the Air Force 1 Low 'Black'
-        '/img/rb_nike1.png' // Thumbnail image for the Air Force 1 Low 'Black'
+        '/img/rb_nike1.png',
+        '/img/rb_nike1.png'
       ],
-      price: 1000, // Price for the Air Force 1 Low 'Black'
+      price: 1000,
       quantity: 1,
       product: {
         name: "NIKE AIR FORCE 1 LOW 'BLACK'",
         price: 1000,
-        image: '/img/rb_nike1.png' // Image for the Air Force 1 Low 'Black'
+        image: '/img/rb_nike1.png'
       },
-      showBasketMessage: false // Controls the message visibility
+      showBasketMessage: false
     }
   },
   methods: {
     goBack() {
-      this.$router.go(-1) // If you are using Vue Router to navigate
+      this.$router.go(-1)
     },
     changeImage(imageSrc) {
       this.mainImage = imageSrc
     },
     addToCart() {
-      // Add product to basket (localStorage)
       const basket = JSON.parse(localStorage.getItem('basket')) || []
       const existingProduct = basket.find((item) => item.name === this.product.name)
 
@@ -175,7 +170,6 @@ export default {
 
       localStorage.setItem('basket', JSON.stringify(basket))
 
-      // Show the message "V košíku" for 1 second
       this.showBasketMessage = true
       setTimeout(() => {
         this.showBasketMessage = false
@@ -185,7 +179,7 @@ export default {
       el.style.opacity = 0
     },
     enter(el, done) {
-      el.offsetHeight // trigger reflow
+      el.offsetHeight
       el.style.transition = 'opacity 0.5s'
       el.style.opacity = 1
       done()
@@ -200,13 +194,12 @@ export default {
 </script>
 
 <style scoped>
-/* Fade animation for the "V košíku" message */
 .fade-message-enter-active,
 .fade-message-leave-active {
   transition: opacity 0.5s;
 }
 
-.fade-message-enter, .fade-message-leave-to /* .fade-leave-active in <2.1.8 */ {
+.fade-message-enter, .fade-message-leave-to  {
   opacity: 0;
 }
 

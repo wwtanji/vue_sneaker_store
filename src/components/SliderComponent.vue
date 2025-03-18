@@ -1,10 +1,7 @@
 <template>
   <div>
-    <!-- Слайдер -->
     <div id="default-carousel" class="relative w-full" data-carousel="slide">
-      <!-- Carousel wrapper -->
       <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-        <!-- Item -->
         <div
           v-for="(slide, index) in sliderStore.slides"
           :key="index"
@@ -25,7 +22,6 @@
         </div>
       </div>
 
-      <!-- Slider indicators -->
       <div
         class="absolute z-30 flex -translate-x-1/2 bottom-8 left-1/2 space-x-3 rtl:space-x-reverse"
       >
@@ -45,7 +41,6 @@
         ></button>
       </div>
 
-      <!-- Slider controls -->
       <button
         @click="sliderStore.prevSlide"
         type="button"
@@ -100,7 +95,6 @@
       </button>
     </div>
 
-    <!-- Кнопки під слайдером -->
     <div class="mt-10 flex justify-center space-x-8">
       <a href="/autenticita" class="btn-custom">
         <span>100% Autenticita</span>
@@ -124,11 +118,10 @@ import { useSliderStore } from '@/stores/sliderStore'
 export default {
   data() {
     return {
-      sliderStore: useSliderStore() // Ось тут ми використовуємо Pinia Store в Options API
+      sliderStore: useSliderStore()
     }
   },
   methods: {
-    // Всі методи залишаються в компоненті як звичайні методи
     nextSlide() {
       this.sliderStore.nextSlide()
     },
@@ -143,10 +136,9 @@ export default {
     }
   },
   mounted() {
-    // Автоматичне перемикання слайдів кожні 5 секунд
     setInterval(() => {
       this.sliderStore.nextSlide()
-    }, 5000) // кожні 5 секунд
+    }, 5000)
   }
 }
 </script>
@@ -157,11 +149,10 @@ export default {
 }
 
 img {
-  object-fit: cover; /* Забезпечує гарний вигляд зображення в контейнері */
-  cursor: pointer; /* Указатель мыши при наведении на изображение */
+  object-fit: cover;
+  cursor: pointer;
 }
 
-/* Унікальні стилі для кожного зображення */
 #slide-image-0 {
   max-width: 15%;
   max-height: 15%;
@@ -192,7 +183,6 @@ img {
   max-height: 15%;
 }
 
-/* Фон для всієї каруселі */
 #default-carousel {
   background-size: cover;
   background-position: center;

@@ -2,7 +2,6 @@
   <div class="p-6">
     <h2 class="text-2xl font-bold mb-4">NOVYNKY 2025</h2>
 
-    <!-- Кнопки для сортування -->
     <div class="mb-4 flex space-x-4">
       <button
         @click="sortByPriceAsc"
@@ -30,14 +29,12 @@
       </button>
     </div>
 
-    <!-- Список товарів -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <div
         v-for="(product, index) in products"
         :key="index"
         class="border rounded-lg p-4 flex flex-col text-center h-full"
       >
-        <!-- Картинка з обробником події на клік для переходу до сторінки товару -->
         <img
           :src="product.image"
           :alt="product.name"
@@ -46,7 +43,6 @@
         />
         <h3 class="text-lg font-semibold mb-2">{{ product.name }}</h3>
 
-        <!-- Вирівнювання кнопки і ціни -->
         <div class="flex justify-between items-center mt-auto">
           <button
             @click="buyProduct(product)"
@@ -59,7 +55,6 @@
       </div>
     </div>
 
-    <!-- Плавна анімація "V košíku" в центрі екрану -->
     <transition name="fade">
       <div
         v-if="showBasketMessage"
@@ -119,14 +114,12 @@ export default {
         }
       ],
       products: [],
-      showBasketMessage: false, // Для анімації "V košíku"
+      showBasketMessage: false,
       sortMode: localStorage.getItem('sortMode') || 'default'
     }
   },
   methods: {
-    // Переходить на сторінку продукту
     goToProductPage(index) {
-      // Перенаправляє користувача на сторінку продукту
       this.$router.push(`/product/${index + 1}`)
     },
     sortByPriceAsc() {
@@ -164,7 +157,6 @@ export default {
 
       localStorage.setItem('basket', JSON.stringify(basket))
 
-      // Показуємо повідомлення "V košíku" на 3 секунди
       this.showBasketMessage = true
       setTimeout(() => {
         this.showBasketMessage = false

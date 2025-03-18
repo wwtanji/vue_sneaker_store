@@ -44,7 +44,6 @@ export default defineComponent({
   <footer class="bg-white dark:bg-gray-900">
     <div class="mx-auto w-full max-w-screen-xl">
       <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
-        <!-- Генерація категорій і посилань -->
         <div v-for="(links, groupName) in linkGroups" :key="groupName">
           <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
             {{ groupName }}
@@ -58,7 +57,6 @@ export default defineComponent({
           </ul>
         </div>
       </div>
-      <!-- Нижня частина футера -->
       <div class="text-center py-4 border-t border-gray-200 dark:border-gray-700">
         <p class="text-sm text-gray-500 dark:text-gray-400">
           &copy; 2020 - {{ currentYear }} Your Company. All rights reserved.

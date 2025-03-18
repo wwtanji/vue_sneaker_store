@@ -1,11 +1,9 @@
 <template>
   <div class="flex">
-    <!-- Left filter section -->
     <div class="w-64 p-4 border border-gray-300 rounded-lg shadow-md mb-4 mr-4">
       <h3 class="text-lg font-bold mb-4">UKRYŤ FILTRE</h3>
       <h4 class="text-lg font-bold mb-4">NOVINKY 2025</h4>
 
-      <!-- Gender filter -->
       <div class="mb-6">
         <h5 class="text-md font-semibold mb-2">POHLAVIE</h5>
         <div class="flex flex-col space-y-1">
@@ -23,18 +21,15 @@
       </div>
     </div>
 
-    <!-- Right product listing -->
     <div class="p-6 w-full">
       <h2 class="text-2xl font-bold mb-4">Teniski:)</h2>
 
-      <!-- Product list -->
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
         <div
           v-for="(product, index) in filteredProducts"
           :key="index"
           class="border rounded-lg p-4 flex flex-col text-center transform scale-100 h-full"
         >
-          <!-- Product image with click event to navigate to the product page -->
           <img
             :src="product.image"
             :alt="product.name"
@@ -43,7 +38,6 @@
           />
           <h3 class="text-md font-semibold mb-2 truncate">{{ product.name }}</h3>
 
-          <!-- Button and price alignment -->
           <div class="flex justify-between items-center mt-auto text-sm">
             <button
               @click="buyProduct(product)"
@@ -56,7 +50,6 @@
         </div>
       </div>
 
-      <!-- Basket message with fade transition -->
       <transition name="fade">
         <div
           v-if="showBasketMessage"
@@ -118,7 +111,7 @@ export default {
       ],
       filteredProducts: [],
       showBasketMessage: false,
-      selectedGenders: [], // Start with no selected filters
+      selectedGenders: [],
       genders: [
         { label: 'Men', count: 2 },
         { label: 'Women', count: 6 }
@@ -150,7 +143,7 @@ export default {
     },
     filterByGender() {
       if (this.selectedGenders.length === 0) {
-        this.filteredProducts = [...this.originalProducts]; // if no gender selected, show all products
+        this.filteredProducts = [...this.originalProducts];
       } else {
         this.filteredProducts = this.originalProducts.filter((product) => {
           const isMen =
@@ -167,7 +160,7 @@ export default {
     }
   },
   created() {
-    this.filteredProducts = [...this.originalProducts]; // Initialize with all products
+    this.filteredProducts = [...this.originalProducts]; 
   }
 };
 </script>

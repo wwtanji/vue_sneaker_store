@@ -2,7 +2,6 @@
   <div class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
       <div class="flex flex-wrap -mx-4 relative">
-        <!-- Back arrow button placed outside the image container, on the left -->
         <button
           @click="goBack"
           class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-600 text-white p-2 rounded-full hover:bg-gray-800 focus:outline-none"
@@ -19,7 +18,6 @@
           </svg>
         </button>
 
-        <!-- Product Images -->
         <div class="w-full md:w-1/2 px-4 mb-8">
           <transition name="fade" @before-enter="beforeEnter" @enter="enter" @leave="leave">
             <img
@@ -43,7 +41,6 @@
           </div>
         </div>
 
-        <!-- Product Details -->
         <div class="w-full md:w-1/2 px-4">
           <h2 class="text-3xl font-bold mb-2">{{ product.name }}</h2>
           <p class="text-gray-600 mb-4">SKU: AF1MAXBLACK</p>
@@ -118,7 +115,6 @@
             </ul>
           </div>
 
-          <!-- Basket Notification -->
           <transition name="fade-message">
             <div
               v-if="showBasketMessage"

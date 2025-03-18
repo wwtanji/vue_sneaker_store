@@ -1,7 +1,6 @@
 <template>
   <nav>
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-6">
-      <!-- Для мобільної версії, кнопка меню -->
       <button
         @click="toggleMenu"
         type="button"
@@ -26,7 +25,6 @@
         </svg>
       </button>
 
-      <!-- Cart icon справа -->
       <div class="absolute top-6 right-6">
         <router-link
           to="/basket"
@@ -45,7 +43,7 @@ export default {
   name: 'BaketIcon',
   data() {
     return {
-      isMenuOpen: false // Стан мобільного меню
+      isMenuOpen: false 
     }
   },
   methods: {

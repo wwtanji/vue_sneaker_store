@@ -74,6 +74,6 @@ export default {
 <style scoped>
 input,
 textarea {
-  border: 1px solid #d1d5db; /* light gray border */
+  border: 1px solid #d1d5db; 
 }
 </style>

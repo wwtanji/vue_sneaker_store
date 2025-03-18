@@ -7,15 +7,12 @@ import BasketIcon from './components/BasketIcon.vue'
 
 <template>
   <div class="flex flex-col min-h-screen">
-    <!-- Навбар -->
     <HeaderComponent />
-    <!-- Головний контент -->
     <BasketIcon />
     <main class="flex-grow mx-4">
       <RouterView />
     </main>
 
-    <!-- Футер -->
     <FooterComponent />
   </div>
 </template>

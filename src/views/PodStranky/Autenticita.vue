@@ -2,11 +2,9 @@
   <div
     class="max-w-3xl mx-auto p-6 bg-gray-50 rounded-xl shadow-lg font-sans text-gray-800 mt-8 mb-8"
   >
-    <!-- Title -->
     <h1 class="text-4xl font-bold text-center mb-8 text-gradient">Záruka Autenticity</h1>
     <p class="text-xl text-center mb-10 text-gray-600">Pohodlný nákup bez starostí</p>
 
-    <!-- Description -->
     <p class="text-lg mb-8 text-gray-700 leading-relaxed">
       Našou hlavnou prioritou je vytvoriť maximálny zážitok pri nakupovaní vašich obľúbených
       značiek. Aby sme to dosiahli, chceme zabezpečiť, aby sa zákazníci pri nakupovaní cítili
@@ -14,14 +12,12 @@
       nás by mal smerovať k celkovej udržateľnosti...
     </p>
 
-    <!-- Sustainability Section -->
     <h2 class="text-3xl font-semibold mt-16 text-gray-800">Čo pre nás znamená udržateľnosť?</h2>
     <p class="text-lg text-gray-700 mb-8">
       Pre nás sa udržateľnosť netýka iba ekologických výziev. Vo SneakerStore chápeme udržateľnosť
       ako zodpovednosť voči zákazníkom, komunite a nášmu prostrediu, vrátane životného prostredia...
     </p>
 
-    <!-- Accordion for Questions and Answers -->
     <div class="mt-8 space-y-6">
       <div class="accordion-item">
         <button
@@ -110,22 +106,18 @@ export default {
   name: 'AutenticitaComponent',
   data() {
     return {
-      activeAnswers: [] // Changed to an array to store multiple active answers
+      activeAnswers: []
     }
   },
   methods: {
-    // Toggle the visibility of a specific answer
     toggleAnswer(answer) {
       const index = this.activeAnswers.indexOf(answer)
       if (index > -1) {
-        // If it's already active, remove it
         this.activeAnswers.splice(index, 1)
       } else {
-        // Otherwise, add it to the array
         this.activeAnswers.push(answer)
       }
     },
-    // Check if a particular answer is active
     isAnswerActive(answer) {
       return this.activeAnswers.includes(answer)
     }
@@ -136,7 +128,6 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-/* Title gradient text */
 .text-gradient {
   background: black;
   -webkit-background-clip: text;
